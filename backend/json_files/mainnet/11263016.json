@@ -1,0 +1,13 @@
+{
+    "lighthouse": {
+        "slot": 11263016,
+        "network": "mainnet",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:23:54.411000",
+        "status": "produced",
+        "hash": "0x7a753cb365340c9deb405531f28ab47d05b3766501846368863a53dfc12486fa",
+        "parent_hash": "0x5d655426b47dd4bfeb5f645196d8e10fc96020b3e65884b7ffcdfd7d443c2c78",
+        "timestamp_seconds": 1741980234411.0,
+        "seconds_in_slot": 7.411
+    }
+}

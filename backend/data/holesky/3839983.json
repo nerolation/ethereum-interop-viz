@@ -1,0 +1,46 @@
+{
+    "lodestar": {
+        "slot": 3839983,
+        "network": "holesky",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 19:56:38.361000",
+        "status": "produced",
+        "hash": "0x8a13869f933301af3be95a21a0c67d62894d6d22c77b284f61715b3ce4397ed1",
+        "parent_hash": "0xd883e6caec91e81180fc4555758fb23be6cbd3b7ffe25cc75287f4b23ec4ca73",
+        "timestamp_seconds": 1741982198361.0,
+        "seconds_in_slot": 3.361
+    },
+    "nimbus": {
+        "slot": 3839983,
+        "network": "holesky",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 19:56:37.801000",
+        "status": "produced",
+        "hash": "0x8a13869f933301af3be95a21a0c67d62894d6d22c77b284f61715b3ce4397ed1",
+        "parent_hash": "0xd883e6caec91e81180fc4555758fb23be6cbd3b7ffe25cc75287f4b23ec4ca73",
+        "timestamp_seconds": 1741982197801.0,
+        "seconds_in_slot": 2.801
+    },
+    "prysm": {
+        "slot": 3839983,
+        "network": "holesky",
+        "client": "prysm",
+        "timestamp": "2025-03-14 19:56:37.905000",
+        "status": "produced",
+        "hash": "0x8a13869f933301af3be95a21a0c67d62894d6d22c77b284f61715b3ce4397ed1",
+        "parent_hash": "0xd883e6caec91e81180fc4555758fb23be6cbd3b7ffe25cc75287f4b23ec4ca73",
+        "timestamp_seconds": 1741982197905.0,
+        "seconds_in_slot": 2.905
+    },
+    "teku": {
+        "slot": 3839983,
+        "network": "holesky",
+        "client": "teku",
+        "timestamp": "2025-03-14 19:56:38.123000",
+        "status": "produced",
+        "hash": "0x8a13869f933301af3be95a21a0c67d62894d6d22c77b284f61715b3ce4397ed1",
+        "parent_hash": "0xd883e6caec91e81180fc4555758fb23be6cbd3b7ffe25cc75287f4b23ec4ca73",
+        "timestamp_seconds": 1741982198123.0,
+        "seconds_in_slot": 3.123
+    }
+}

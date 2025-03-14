@@ -1,0 +1,13 @@
+{
+    "nimbus": {
+        "slot": 7187447,
+        "network": "sepolia",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 20:09:26.301000",
+        "status": "produced",
+        "hash": "0x19b1157cb7dcd21d887750a05397a5d38ce82f442f9f29c6453b898fb052763e",
+        "parent_hash": "0x1055e4035371f65d26fefa8da751b59e35840d1277899e3d9a77b79e33cb7dac",
+        "timestamp_seconds": 1741982966301.0,
+        "seconds_in_slot": 3.301
+    }
+}

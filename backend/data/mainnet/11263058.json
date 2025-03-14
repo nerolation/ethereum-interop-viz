@@ -1,0 +1,24 @@
+{
+    "lighthouse": {
+        "slot": 11263058,
+        "network": "mainnet",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:32:01.863000",
+        "status": "produced",
+        "hash": "0x6d4d2a68f8ba1b1637a13feae6138a36331fddfd28cc14fdbb77e80b20198887",
+        "parent_hash": "0x048d0c6c6d518411a02a91ce0d90a2e57ed68dbb355d04afa5a100635ff5d62e",
+        "timestamp_seconds": 1741980721863.0,
+        "seconds_in_slot": 2.863
+    },
+    "lodestar": {
+        "slot": 11263058,
+        "network": "mainnet",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 19:32:01.611000",
+        "status": "produced",
+        "hash": "0x6d4d2a68f8ba1b1637a13feae6138a36331fddfd28cc14fdbb77e80b20198887",
+        "parent_hash": "0x048d0c6c6d518411a02a91ce0d90a2e57ed68dbb355d04afa5a100635ff5d62e",
+        "timestamp_seconds": 1741980721611.0,
+        "seconds_in_slot": 2.611
+    }
+}

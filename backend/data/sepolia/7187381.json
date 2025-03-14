@@ -1,0 +1,24 @@
+{
+    "lighthouse": {
+        "slot": 7187381,
+        "network": "sepolia",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:56:14.012000",
+        "status": "produced",
+        "hash": "0x7c55897e17170af1558ade3e22ffd265726ceb7b8490aa1be6e96d0ad061b5c9",
+        "parent_hash": "0x9dab1358b17d49af3a48969b2fe4100fac001d853940d500f5e2c635865a7dcf",
+        "timestamp_seconds": 1741982174012.0,
+        "seconds_in_slot": 3.012
+    },
+    "teku": {
+        "slot": 7187381,
+        "network": "sepolia",
+        "client": "teku",
+        "timestamp": "2025-03-14 19:56:14.151000",
+        "status": "produced",
+        "hash": "0x7c55897e17170af1558ade3e22ffd265726ceb7b8490aa1be6e96d0ad061b5c9",
+        "parent_hash": "0x9dab1358b17d49af3a48969b2fe4100fac001d853940d500f5e2c635865a7dcf",
+        "timestamp_seconds": 1741982174151.0,
+        "seconds_in_slot": 3.151
+    }
+}

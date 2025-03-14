@@ -1,0 +1,13 @@
+{
+    "lodestar": {
+        "slot": 7187342,
+        "network": "sepolia",
+        "client": "lodestar",
+        "timestamp": "2023-08-26 17:48:55.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1693072135000.0,
+        "seconds_in_slot": 8.0
+    }
+}

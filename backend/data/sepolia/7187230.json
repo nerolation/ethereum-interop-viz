@@ -1,0 +1,35 @@
+{
+    "lighthouse": {
+        "slot": 7187230,
+        "network": "sepolia",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:26:04.029000",
+        "status": "produced",
+        "hash": "0xf82d52391fb38f6609d184f3e9312a2800aa612f5462afad818514a6c044c4f4",
+        "parent_hash": "0xc6fa79748749fdb14792489ea13c592b6b054939bb0d748595e7979a6321fda3",
+        "timestamp_seconds": 1741980364029.0,
+        "seconds_in_slot": 5.029
+    },
+    "lodestar": {
+        "slot": 7187230,
+        "network": "sepolia",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 19:26:02.262000",
+        "status": "produced",
+        "hash": "0xf82d52391fb38f6609d184f3e9312a2800aa612f5462afad818514a6c044c4f4",
+        "parent_hash": "0xc6fa79748749fdb14792489ea13c592b6b054939bb0d748595e7979a6321fda3",
+        "timestamp_seconds": 1741980362262.0,
+        "seconds_in_slot": 3.262
+    },
+    "teku": {
+        "slot": 7187230,
+        "network": "sepolia",
+        "client": "teku",
+        "timestamp": "2025-03-14 19:26:02.372000",
+        "status": "produced",
+        "hash": "0xf82d52391fb38f6609d184f3e9312a2800aa612f5462afad818514a6c044c4f4",
+        "parent_hash": "0xc6fa79748749fdb14792489ea13c592b6b054939bb0d748595e7979a6321fda3",
+        "timestamp_seconds": 1741980362372.0,
+        "seconds_in_slot": 3.372
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "lighthouse": {
+        "slot": 11263136,
+        "network": "mainnet",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:47:47.338000",
+        "status": "produced",
+        "hash": "0xc5ae3d242c99ee2a8b1e654c8020b7629fd86f80ca98c7de4af0e860998fd7b0",
+        "parent_hash": "0x0e3c6d0f28147fe58da1b40c51172212be510b893a2a47233186cef09ffb6d07",
+        "timestamp_seconds": 1741981667338.0,
+        "seconds_in_slot": 0.338
+    },
+    "teku": {
+        "slot": 11263136,
+        "network": "mainnet",
+        "client": "teku",
+        "timestamp": "2025-03-14 19:47:38.167000",
+        "status": "produced",
+        "hash": "0xc5ae3d242c99ee2a8b1e654c8020b7629fd86f80ca98c7de4af0e860998fd7b0",
+        "parent_hash": "0x0e3c6d0f28147fe58da1b40c51172212be510b893a2a47233186cef09ffb6d07",
+        "timestamp_seconds": 1741981658167.0,
+        "seconds_in_slot": 3.167
+    }
+}

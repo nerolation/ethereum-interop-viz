@@ -1,0 +1,13 @@
+{
+    "teku": {
+        "slot": 11263182,
+        "network": "mainnet",
+        "client": "teku",
+        "timestamp": "2025-03-14 19:56:49.804000",
+        "status": "produced",
+        "hash": "0x367fc7abf462d6c55b02b2cb69cc467cdbf718986846162bb8f61a16081db9c8",
+        "parent_hash": "0x65d499d8273b2854ddc3ab992c40dde6a9a5cbd687f20e0cbe13a65a81d4b706",
+        "timestamp_seconds": 1741982209804.0,
+        "seconds_in_slot": 2.804
+    }
+}

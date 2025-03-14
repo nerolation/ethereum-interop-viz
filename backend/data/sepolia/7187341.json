@@ -1,0 +1,13 @@
+{
+    "lodestar": {
+        "slot": 7187341,
+        "network": "sepolia",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 19:48:12.590000",
+        "status": "produced",
+        "hash": "0xa1ffa7a7f4e0b83e363a81494fb5a32a81cb207d9aa9e8fde521161b90a82157",
+        "parent_hash": "0x36b3635f1a2f37d3b8412fe91eb1e1670c027c49818e873198dc258a84214701",
+        "timestamp_seconds": 1741981692590.0,
+        "seconds_in_slot": 1.59
+    }
+}

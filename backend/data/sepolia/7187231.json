@@ -1,0 +1,24 @@
+{
+    "lodestar": {
+        "slot": 7187231,
+        "network": "sepolia",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 19:26:12.670000",
+        "status": "produced",
+        "hash": "0x0f4d429d2354e7486be37035d7eb2a8280415f50ec27590666cc6b4543e1817a",
+        "parent_hash": "0xf82d52391fb38f6609d184f3e9312a2800aa612f5462afad818514a6c044c4f4",
+        "timestamp_seconds": 1741980372670.0,
+        "seconds_in_slot": 1.67
+    },
+    "teku": {
+        "slot": 7187231,
+        "network": "sepolia",
+        "client": "teku",
+        "timestamp": "2025-03-14 19:26:12.709000",
+        "status": "produced",
+        "hash": "0x0f4d429d2354e7486be37035d7eb2a8280415f50ec27590666cc6b4543e1817a",
+        "parent_hash": "0xf82d52391fb38f6609d184f3e9312a2800aa612f5462afad818514a6c044c4f4",
+        "timestamp_seconds": 1741980372709.0,
+        "seconds_in_slot": 1.709
+    }
+}

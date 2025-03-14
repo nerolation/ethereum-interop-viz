@@ -1,0 +1,57 @@
+{
+    "lighthouse": {
+        "slot": 11263023,
+        "network": "mainnet",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:25:00.818000",
+        "status": "produced",
+        "hash": "0xf62c74d7725b8f7e698354c2b1aafa90777befe25cd9637b0a0c8fde8b7554b1",
+        "parent_hash": "0x18a2469accab66be8970f3ac17ee3efaf1cf26289e8e2c344cc31f99fca2094e",
+        "timestamp_seconds": 1741980300818.0,
+        "seconds_in_slot": 1.818
+    },
+    "lodestar": {
+        "slot": 11263023,
+        "network": "mainnet",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 19:25:00.921000",
+        "status": "produced",
+        "hash": "0xf62c74d7725b8f7e698354c2b1aafa90777befe25cd9637b0a0c8fde8b7554b1",
+        "parent_hash": "0x18a2469accab66be8970f3ac17ee3efaf1cf26289e8e2c344cc31f99fca2094e",
+        "timestamp_seconds": 1741980300921.0,
+        "seconds_in_slot": 1.921
+    },
+    "nimbus": {
+        "slot": 11263023,
+        "network": "mainnet",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 19:25:00.890000",
+        "status": "produced",
+        "hash": "0xf62c74d7725b8f7e698354c2b1aafa90777befe25cd9637b0a0c8fde8b7554b1",
+        "parent_hash": "0x18a2469accab66be8970f3ac17ee3efaf1cf26289e8e2c344cc31f99fca2094e",
+        "timestamp_seconds": 1741980300890.0,
+        "seconds_in_slot": 1.89
+    },
+    "prysm": {
+        "slot": 11263023,
+        "network": "mainnet",
+        "client": "prysm",
+        "timestamp": "2025-03-14 19:25:00.699000",
+        "status": "produced",
+        "hash": "0xf62c74d7725b8f7e698354c2b1aafa90777befe25cd9637b0a0c8fde8b7554b1",
+        "parent_hash": "0x18a2469accab66be8970f3ac17ee3efaf1cf26289e8e2c344cc31f99fca2094e",
+        "timestamp_seconds": 1741980300699.0,
+        "seconds_in_slot": 1.699
+    },
+    "teku": {
+        "slot": 11263023,
+        "network": "mainnet",
+        "client": "teku",
+        "timestamp": "2025-03-14 19:25:00.702000",
+        "status": "produced",
+        "hash": "0xf62c74d7725b8f7e698354c2b1aafa90777befe25cd9637b0a0c8fde8b7554b1",
+        "parent_hash": "0x18a2469accab66be8970f3ac17ee3efaf1cf26289e8e2c344cc31f99fca2094e",
+        "timestamp_seconds": 1741980300702.0,
+        "seconds_in_slot": 1.702
+    }
+}

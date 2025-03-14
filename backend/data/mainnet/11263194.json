@@ -1,0 +1,57 @@
+{
+    "lighthouse": {
+        "slot": 11263194,
+        "network": "mainnet",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:59:19.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1741982359000.0,
+        "seconds_in_slot": 8.0
+    },
+    "lodestar": {
+        "slot": 11263194,
+        "network": "mainnet",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 19:59:19.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1741982359000.0,
+        "seconds_in_slot": 8.0
+    },
+    "nimbus": {
+        "slot": 11263194,
+        "network": "mainnet",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 19:59:19.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1741982359000.0,
+        "seconds_in_slot": 8.0
+    },
+    "prysm": {
+        "slot": 11263194,
+        "network": "mainnet",
+        "client": "prysm",
+        "timestamp": "2025-03-14 19:59:19.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1741982359000.0,
+        "seconds_in_slot": 8.0
+    },
+    "teku": {
+        "slot": 11263194,
+        "network": "mainnet",
+        "client": "teku",
+        "timestamp": "2025-03-14 19:59:19.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1741982359000.0,
+        "seconds_in_slot": 8.0
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "lighthouse": {
+        "slot": 7187413,
+        "network": "sepolia",
+        "client": "lighthouse",
+        "timestamp": "2023-08-26 18:03:07.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1693072987000.0,
+        "seconds_in_slot": 8.0
+    },
+    "lodestar": {
+        "slot": 7187413,
+        "network": "sepolia",
+        "client": "lodestar",
+        "timestamp": "2023-08-26 18:03:07.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1693072987000.0,
+        "seconds_in_slot": 8.0
+    },
+    "nimbus": {
+        "slot": 7187413,
+        "network": "sepolia",
+        "client": "nimbus",
+        "timestamp": "2023-08-26 18:03:07.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1693072987000.0,
+        "seconds_in_slot": 8.0
+    },
+    "prysm": {
+        "slot": 7187413,
+        "network": "sepolia",
+        "client": "prysm",
+        "timestamp": "2023-08-26 18:03:07.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1693072987000.0,
+        "seconds_in_slot": 8.0
+    },
+    "teku": {
+        "slot": 7187413,
+        "network": "sepolia",
+        "client": "teku",
+        "timestamp": "2023-08-26 18:03:07.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1693072987000.0,
+        "seconds_in_slot": 8.0
+    }
+}

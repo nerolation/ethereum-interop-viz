@@ -1,0 +1,13 @@
+{
+    "teku": {
+        "slot": 3839768,
+        "network": "holesky",
+        "client": "teku",
+        "timestamp": "2025-03-14 19:13:39.924000",
+        "status": "produced",
+        "hash": "0x133ee405f725422818e78fbb611dfbddf5607cbef0b5e8a80834fc443b4383f1",
+        "parent_hash": "0xef1c4f4f1decde049150dfcdae02ce0702481ff81dd765d4dc962e91998fc473",
+        "timestamp_seconds": 1741979619924.0,
+        "seconds_in_slot": 4.924
+    }
+}

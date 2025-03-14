@@ -1,0 +1,13 @@
+{
+    "nimbus": {
+        "slot": 7187355,
+        "network": "sepolia",
+        "client": "nimbus",
+        "timestamp": "2023-08-26 17:51:31.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1693072291000.0,
+        "seconds_in_slot": 8.0
+    }
+}

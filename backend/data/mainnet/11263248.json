@@ -1,0 +1,13 @@
+{
+    "nimbus": {
+        "slot": 11263248,
+        "network": "mainnet",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 20:10:02.636000",
+        "status": "produced",
+        "hash": "0x73871eb9cee190a6a412c7a9f94eb43d4d029e11f1e17667591edac53c0abf7b",
+        "parent_hash": "0x70feecb228b7125c7bf3ff2780c560f9fbc4656a592dcb5c3b64c3e3ca2b5f4a",
+        "timestamp_seconds": 1741983002636.0,
+        "seconds_in_slot": 3.636
+    }
+}

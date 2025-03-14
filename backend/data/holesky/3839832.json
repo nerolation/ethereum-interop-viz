@@ -1,0 +1,35 @@
+{
+    "lodestar": {
+        "slot": 3839832,
+        "network": "holesky",
+        "client": "lodestar",
+        "timestamp": "2022-05-18 19:26:55.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652902015000.0,
+        "seconds_in_slot": 8.0
+    },
+    "nimbus": {
+        "slot": 3839832,
+        "network": "holesky",
+        "client": "nimbus",
+        "timestamp": "2022-05-18 19:26:55.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652902015000.0,
+        "seconds_in_slot": 8.0
+    },
+    "teku": {
+        "slot": 3839832,
+        "network": "holesky",
+        "client": "teku",
+        "timestamp": "2022-05-18 19:26:55.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652902015000.0,
+        "seconds_in_slot": 8.0
+    }
+}

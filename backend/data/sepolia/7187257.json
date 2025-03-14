@@ -1,0 +1,24 @@
+{
+    "lighthouse": {
+        "slot": 7187257,
+        "network": "sepolia",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:31:24.488000",
+        "status": "produced",
+        "hash": "0x55298f6fc2c6098506593e460a2c2b0b7d941ce966623212aa9d36cd3c85e879",
+        "parent_hash": "0x495906cfcb335319f69faf24a13f4d03d14ae2626d6f92500c3a76979e38079e",
+        "timestamp_seconds": 1741980684488.0,
+        "seconds_in_slot": 1.488
+    },
+    "nimbus": {
+        "slot": 7187257,
+        "network": "sepolia",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 19:31:24.515000",
+        "status": "produced",
+        "hash": "0x55298f6fc2c6098506593e460a2c2b0b7d941ce966623212aa9d36cd3c85e879",
+        "parent_hash": "0x495906cfcb335319f69faf24a13f4d03d14ae2626d6f92500c3a76979e38079e",
+        "timestamp_seconds": 1741980684515.0,
+        "seconds_in_slot": 1.515
+    }
+}

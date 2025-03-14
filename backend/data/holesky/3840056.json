@@ -1,0 +1,46 @@
+{
+    "lighthouse": {
+        "slot": 3840056,
+        "network": "holesky",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 20:11:13.618000",
+        "status": "produced",
+        "hash": "0x2956f5f0993f28cf5addad51a62b470f807a81e4c171eeff4c1bd251bb816f1c",
+        "parent_hash": "0x9abb7c4224c3f196cb6e4e4a5b31e1a08a08d2755d4ed1fab2996708ce3e805c",
+        "timestamp_seconds": 1741983073618.0,
+        "seconds_in_slot": 2.618
+    },
+    "lodestar": {
+        "slot": 3840056,
+        "network": "holesky",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 20:11:13.981000",
+        "status": "produced",
+        "hash": "0x2956f5f0993f28cf5addad51a62b470f807a81e4c171eeff4c1bd251bb816f1c",
+        "parent_hash": "0x9abb7c4224c3f196cb6e4e4a5b31e1a08a08d2755d4ed1fab2996708ce3e805c",
+        "timestamp_seconds": 1741983073981.0,
+        "seconds_in_slot": 2.981
+    },
+    "nimbus": {
+        "slot": 3840056,
+        "network": "holesky",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 20:11:13.521000",
+        "status": "produced",
+        "hash": "0x2956f5f0993f28cf5addad51a62b470f807a81e4c171eeff4c1bd251bb816f1c",
+        "parent_hash": "0x9abb7c4224c3f196cb6e4e4a5b31e1a08a08d2755d4ed1fab2996708ce3e805c",
+        "timestamp_seconds": 1741983073521.0,
+        "seconds_in_slot": 2.521
+    },
+    "teku": {
+        "slot": 3840056,
+        "network": "holesky",
+        "client": "teku",
+        "timestamp": "2025-03-14 20:11:15.400000",
+        "status": "produced",
+        "hash": "0x2956f5f0993f28cf5addad51a62b470f807a81e4c171eeff4c1bd251bb816f1c",
+        "parent_hash": "0x9abb7c4224c3f196cb6e4e4a5b31e1a08a08d2755d4ed1fab2996708ce3e805c",
+        "timestamp_seconds": 1741983075400.0,
+        "seconds_in_slot": 4.4
+    }
+}

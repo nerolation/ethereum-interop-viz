@@ -1,0 +1,46 @@
+{
+    "lighthouse": {
+        "slot": 11263245,
+        "network": "mainnet",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 20:09:26.158000",
+        "status": "produced",
+        "hash": "0x8d4c6a250d6f0c4a203cee69818b960dd22d8cdfa71a73da36cf033e95cdb988",
+        "parent_hash": "0x36cec6b4fc694b077d2ba778240731472f9555ca973c34ee8cb5b5ff12c7c4f8",
+        "timestamp_seconds": 1741982966158.0,
+        "seconds_in_slot": 3.158
+    },
+    "lodestar": {
+        "slot": 11263245,
+        "network": "mainnet",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 20:09:25.345000",
+        "status": "produced",
+        "hash": "0x8d4c6a250d6f0c4a203cee69818b960dd22d8cdfa71a73da36cf033e95cdb988",
+        "parent_hash": "0x36cec6b4fc694b077d2ba778240731472f9555ca973c34ee8cb5b5ff12c7c4f8",
+        "timestamp_seconds": 1741982965345.0,
+        "seconds_in_slot": 2.345
+    },
+    "nimbus": {
+        "slot": 11263245,
+        "network": "mainnet",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 20:09:25.432000",
+        "status": "produced",
+        "hash": "0x8d4c6a250d6f0c4a203cee69818b960dd22d8cdfa71a73da36cf033e95cdb988",
+        "parent_hash": "0x36cec6b4fc694b077d2ba778240731472f9555ca973c34ee8cb5b5ff12c7c4f8",
+        "timestamp_seconds": 1741982965432.0,
+        "seconds_in_slot": 2.432
+    },
+    "teku": {
+        "slot": 11263245,
+        "network": "mainnet",
+        "client": "teku",
+        "timestamp": "2025-03-14 20:09:25.249000",
+        "status": "produced",
+        "hash": "0x8d4c6a250d6f0c4a203cee69818b960dd22d8cdfa71a73da36cf033e95cdb988",
+        "parent_hash": "0x36cec6b4fc694b077d2ba778240731472f9555ca973c34ee8cb5b5ff12c7c4f8",
+        "timestamp_seconds": 1741982965249.0,
+        "seconds_in_slot": 2.249
+    }
+}

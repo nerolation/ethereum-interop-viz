@@ -1,0 +1,35 @@
+{
+    "lodestar": {
+        "slot": 11262575,
+        "network": "mainnet",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 17:55:27.353000",
+        "status": "produced",
+        "hash": "0x5eafcacfcaa299c3d403cb255026ce578bff4cf97e087e3672d0956b7664e9ef",
+        "parent_hash": "0x807a482e7c95df0ea4ca1c2e1e255677ed0243fc5591300f926defc61e8f4bd7",
+        "timestamp_seconds": 1741974927353.0,
+        "seconds_in_slot": 4.353
+    },
+    "nimbus": {
+        "slot": 11262575,
+        "network": "mainnet",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 17:55:25.266000",
+        "status": "produced",
+        "hash": "0x5eafcacfcaa299c3d403cb255026ce578bff4cf97e087e3672d0956b7664e9ef",
+        "parent_hash": "0x807a482e7c95df0ea4ca1c2e1e255677ed0243fc5591300f926defc61e8f4bd7",
+        "timestamp_seconds": 1741974925266.0,
+        "seconds_in_slot": 2.266
+    },
+    "teku": {
+        "slot": 11262575,
+        "network": "mainnet",
+        "client": "teku",
+        "timestamp": "2025-03-14 17:55:24.871000",
+        "status": "produced",
+        "hash": "0x5eafcacfcaa299c3d403cb255026ce578bff4cf97e087e3672d0956b7664e9ef",
+        "parent_hash": "0x807a482e7c95df0ea4ca1c2e1e255677ed0243fc5591300f926defc61e8f4bd7",
+        "timestamp_seconds": 1741974924871.0,
+        "seconds_in_slot": 1.871
+    }
+}

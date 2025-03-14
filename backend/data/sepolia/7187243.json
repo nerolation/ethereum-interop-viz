@@ -1,0 +1,13 @@
+{
+    "lighthouse": {
+        "slot": 7187243,
+        "network": "sepolia",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:28:39.561000",
+        "status": "produced",
+        "hash": "0x142247a7d65ba4e1ecb68933d5c0f60b2b622d469c1442c791d33bb7f29de484",
+        "parent_hash": "0x1ff7db5ed2d37ed81836d673fbf7c3a86857468bc6303ab46d8c037048996336",
+        "timestamp_seconds": 1741980519561.0,
+        "seconds_in_slot": 4.561
+    }
+}

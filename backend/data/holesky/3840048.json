@@ -1,0 +1,35 @@
+{
+    "lighthouse": {
+        "slot": 3840048,
+        "network": "holesky",
+        "client": "lighthouse",
+        "timestamp": "2022-05-18 20:10:07.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652904607000.0,
+        "seconds_in_slot": 8.0
+    },
+    "lodestar": {
+        "slot": 3840048,
+        "network": "holesky",
+        "client": "lodestar",
+        "timestamp": "2022-05-18 20:10:07.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652904607000.0,
+        "seconds_in_slot": 8.0
+    },
+    "nimbus": {
+        "slot": 3840048,
+        "network": "holesky",
+        "client": "nimbus",
+        "timestamp": "2022-05-18 20:10:07.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652904607000.0,
+        "seconds_in_slot": 8.0
+    }
+}

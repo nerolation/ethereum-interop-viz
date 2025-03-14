@@ -1,0 +1,57 @@
+{
+    "lighthouse": {
+        "slot": 3839870,
+        "network": "holesky",
+        "client": "lighthouse",
+        "timestamp": "2022-05-18 19:34:31.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652902471000.0,
+        "seconds_in_slot": 8.0
+    },
+    "lodestar": {
+        "slot": 3839870,
+        "network": "holesky",
+        "client": "lodestar",
+        "timestamp": "2022-05-18 19:34:31.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652902471000.0,
+        "seconds_in_slot": 8.0
+    },
+    "nimbus": {
+        "slot": 3839870,
+        "network": "holesky",
+        "client": "nimbus",
+        "timestamp": "2022-05-18 19:34:31.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652902471000.0,
+        "seconds_in_slot": 8.0
+    },
+    "prysm": {
+        "slot": 3839870,
+        "network": "holesky",
+        "client": "prysm",
+        "timestamp": "2022-05-18 19:34:31.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652902471000.0,
+        "seconds_in_slot": 8.0
+    },
+    "teku": {
+        "slot": 3839870,
+        "network": "holesky",
+        "client": "teku",
+        "timestamp": "2022-05-18 19:34:31.000",
+        "status": "missed",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1652902471000.0,
+        "seconds_in_slot": 8.0
+    }
+}

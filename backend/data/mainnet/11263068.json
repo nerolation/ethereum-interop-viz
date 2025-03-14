@@ -1,0 +1,13 @@
+{
+    "lodestar": {
+        "slot": 11263068,
+        "network": "mainnet",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 19:34:01.325000",
+        "status": "produced",
+        "hash": "0xa5ce4ea18818910feb0b7ae4439ebf967c38e2b4324119ec247ecab9109c922f",
+        "parent_hash": "0x7a776d94b1c2aaadc9221e7374fd7587dfe782c47797e068e0e79501938dbfe7",
+        "timestamp_seconds": 1741980841325.0,
+        "seconds_in_slot": 2.325
+    }
+}

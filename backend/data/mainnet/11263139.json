@@ -1,0 +1,46 @@
+{
+    "lighthouse": {
+        "slot": 11263139,
+        "network": "mainnet",
+        "client": "lighthouse",
+        "timestamp": "2025-03-14 19:48:12.814000",
+        "status": "produced",
+        "hash": "0xa2a33d015257aa0a3c46e4ae140d8fce5c510238871fade155ec82912bb711ad",
+        "parent_hash": "0xa54c462e7e31779413ef371fb54b4cd79016e3c70798bc4c7590e182f54f67f6",
+        "timestamp_seconds": 1741981692814.0,
+        "seconds_in_slot": 1.814
+    },
+    "lodestar": {
+        "slot": 11263139,
+        "network": "mainnet",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 19:48:12.998000",
+        "status": "produced",
+        "hash": "0xa2a33d015257aa0a3c46e4ae140d8fce5c510238871fade155ec82912bb711ad",
+        "parent_hash": "0xa54c462e7e31779413ef371fb54b4cd79016e3c70798bc4c7590e182f54f67f6",
+        "timestamp_seconds": 1741981692998.0,
+        "seconds_in_slot": 1.998
+    },
+    "nimbus": {
+        "slot": 11263139,
+        "network": "mainnet",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 19:48:12.867000",
+        "status": "produced",
+        "hash": "0xa2a33d015257aa0a3c46e4ae140d8fce5c510238871fade155ec82912bb711ad",
+        "parent_hash": "0xa54c462e7e31779413ef371fb54b4cd79016e3c70798bc4c7590e182f54f67f6",
+        "timestamp_seconds": 1741981692867.0,
+        "seconds_in_slot": 1.867
+    },
+    "prysm": {
+        "slot": 11263139,
+        "network": "mainnet",
+        "client": "prysm",
+        "timestamp": "2025-03-14 19:48:12.858000",
+        "status": "produced",
+        "hash": "0xa2a33d015257aa0a3c46e4ae140d8fce5c510238871fade155ec82912bb711ad",
+        "parent_hash": "0xa54c462e7e31779413ef371fb54b4cd79016e3c70798bc4c7590e182f54f67f6",
+        "timestamp_seconds": 1741981692858.0,
+        "seconds_in_slot": 1.858
+    }
+}
