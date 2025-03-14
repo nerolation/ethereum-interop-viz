@@ -5,7 +5,7 @@ import pytz
 import pandas as pd
 import os, json
 import numpy as np
-from pyxatu_config import get_pyxatu_config
+from backend.pyxatu_config import get_pyxatu_config
 
 # Initialize pyxatu with configuration from environment variables or config file
 config = get_pyxatu_config()
