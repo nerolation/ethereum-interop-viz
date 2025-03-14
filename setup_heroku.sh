@@ -14,17 +14,24 @@ fi
 echo "Please log in to Heroku:"
 heroku login
 
-# Create a new Heroku app
-echo "Creating a new Heroku app..."
-heroku create ethereum-interop-viz
+# Check if the app already exists
+APP_EXISTS=$(heroku apps:info ethereum-interop-viz 2>&1 | grep -c "=== ethereum-interop-viz")
+
+if [ "$APP_EXISTS" -eq 0 ]; then
+    # Create a new Heroku app
+    echo "Creating a new Heroku app..."
+    heroku create ethereum-interop-viz
+else
+    echo "App ethereum-interop-viz already exists."
+fi
 
 # Add Python buildpack
 echo "Adding Python buildpack..."
-heroku buildpacks:add heroku/python
+heroku buildpacks:add heroku/python --app ethereum-interop-viz || true
 
 # Add Node.js buildpack
 echo "Adding Node.js buildpack..."
-heroku buildpacks:add heroku/nodejs
+heroku buildpacks:add heroku/nodejs --app ethereum-interop-viz || true
 
 # Create necessary directories for data if they don't exist
 mkdir -p backend/data/mainnet
@@ -59,11 +66,10 @@ fi
 
 # Set up scheduler configuration
 echo "Setting up scheduler configuration..."
-heroku config:set XATU_UPDATE_INTERVAL=300 --app ethereum-interop-viz
-
-# Enable both web and worker dynos
-echo "Enabling web and worker dynos..."
-heroku ps:scale web=1 worker=1 --app ethereum-interop-viz
+heroku config:set XATU_UPDATE_INTERVAL=12 --app ethereum-interop-viz
 
 echo "Setup complete! You can now deploy your app with:"
-echo "git push heroku main" 
+echo "git push heroku main"
+echo ""
+echo "After deploying, enable the web and worker dynos with:"
+echo "heroku ps:scale web=1 worker=1 --app ethereum-interop-viz" 

@@ -23,8 +23,8 @@ def run_xatu_data_prep():
 
 def main():
     """Main function to run the scheduler."""
-    # Get the interval from environment variable or use default (5 minutes)
-    interval = int(os.environ.get("XATU_UPDATE_INTERVAL", 300))
+    # Get the interval from environment variable or use default (12 seconds)
+    interval = int(os.environ.get("XATU_UPDATE_INTERVAL", 12))
     
     logger.info(f"Starting scheduler with interval of {interval} seconds")
     
