@@ -1,0 +1,24 @@
+{
+    "nimbus": {
+        "slot": 3840160,
+        "network": "holesky",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 20:32:04.831000",
+        "status": "produced",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1741984324831.0,
+        "seconds_in_slot": 5.831
+    },
+    "prysm": {
+        "slot": 3840160,
+        "network": "holesky",
+        "client": "prysm",
+        "timestamp": "2025-03-14 20:32:05.855000",
+        "status": "produced",
+        "hash": NaN,
+        "parent_hash": NaN,
+        "timestamp_seconds": 1741984325855.0,
+        "seconds_in_slot": 6.855
+    }
+}

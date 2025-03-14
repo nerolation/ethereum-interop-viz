@@ -17,27 +17,48 @@ interface ClientProviderProps {
   children: ReactNode;
 }
 
+// Get the API base URL based on environment
+const getApiBaseUrl = () => {
+  // In development, use the full URL
+  if (process.env.NODE_ENV === 'development') {
+    return 'http://localhost:5000/api';
+  }
+  // In production, use relative URLs
+  return '/api';
+};
+
 export const ClientProvider: React.FC<ClientProviderProps> = ({ children }) => {
   const [clients, setClients] = useState<string[]>([]);
   const [visibleClients, setVisibleClients] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch available clients on mount
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        console.log('Fetching available clients...');
+        console.log('[CLIENT] Fetching available clients...');
         setLoading(true);
-        const response = await axios.get('http://localhost:5000/api/clients');
-        console.log('Available clients:', response.data);
-        setClients(response.data);
-        setVisibleClients(response.data); // Initially show all clients
+        
+        const response = await axios.get(`${getApiBaseUrl()}/clients`);
+        console.log('[CLIENT] Available clients from API:', response.data);
+        
+        if (response.data.length === 0) {
+          console.warn('[CLIENT] No clients available from API, using defaults');
+          const defaultClients = ['lighthouse', 'prysm', 'teku', 'nimbus', 'lodestar'];
+          setClients(defaultClients);
+          setVisibleClients(defaultClients);
+        } else {
+          setClients(response.data);
+          setVisibleClients(response.data);
+        }
+        
         setError(null);
       } catch (err) {
-        console.error('Error fetching clients:', err);
+        console.error('[CLIENT] Error fetching clients:', err);
         setError('Failed to fetch available clients');
-        // Set default clients if API fails
-        console.log('Setting default clients due to API failure');
+        
+        // Use default clients as fallback
         const defaultClients = ['lighthouse', 'prysm', 'teku', 'nimbus', 'lodestar'];
         setClients(defaultClients);
         setVisibleClients(defaultClients);
@@ -50,23 +71,24 @@ export const ClientProvider: React.FC<ClientProviderProps> = ({ children }) => {
   }, []);
 
   const toggleClient = (client: string) => {
-    console.log(`Toggling visibility of client: ${client}`);
-    setVisibleClients(prev => {
-      const newVisibleClients = prev.includes(client)
-        ? prev.filter(c => c !== client)
-        : [...prev, client];
-      console.log('New visible clients:', newVisibleClients);
-      return newVisibleClients;
+    setVisibleClients((prev) => {
+      if (prev.includes(client)) {
+        console.log(`[CLIENT] Hiding client: ${client}`);
+        return prev.filter((c) => c !== client);
+      } else {
+        console.log(`[CLIENT] Showing client: ${client}`);
+        return [...prev, client];
+      }
     });
   };
 
   const showAllClients = () => {
-    console.log('Showing all clients');
+    console.log('[CLIENT] Showing all clients');
     setVisibleClients([...clients]);
   };
 
   const hideAllClients = () => {
-    console.log('Hiding all clients');
+    console.log('[CLIENT] Hiding all clients');
     setVisibleClients([]);
   };
 

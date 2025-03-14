@@ -34,7 +34,6 @@ yarn-error.log
 coverage/
 .next/
 out/
-build/
 .DS_Store
 *.pem
 
@@ -47,10 +46,22 @@ build/
 
 # Large files
 backend/validator_mapping.parquet
+# Exclude any file larger than 100MB
+*.pack
 
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log* 
+yarn-error.log*
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Heroku
+.heroku/ 

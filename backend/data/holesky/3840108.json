@@ -5,8 +5,8 @@
         "client": "lighthouse",
         "timestamp": "2025-03-14 20:21:39.576000",
         "status": "produced",
-        "hash": NaN,
-        "parent_hash": NaN,
+        "hash": "0x45c957ad2da19431755d2a1933f380334af769f492f7053b55e23fabedced838",
+        "parent_hash": "0x98deed335ddbd98db62a82f2a3bfbe552df0809cda76f561fc59866e7d38bdb0",
         "timestamp_seconds": 1741983699576.0,
         "seconds_in_slot": 4.576
     },
@@ -14,12 +14,12 @@
         "slot": 3840108,
         "network": "holesky",
         "client": "lodestar",
-        "timestamp": "2025-03-14 20:21:39.955000",
+        "timestamp": "2025-03-14 20:21:39.746000",
         "status": "produced",
-        "hash": NaN,
-        "parent_hash": NaN,
-        "timestamp_seconds": 1741983699955.0,
-        "seconds_in_slot": 4.955
+        "hash": "0x45c957ad2da19431755d2a1933f380334af769f492f7053b55e23fabedced838",
+        "parent_hash": "0x98deed335ddbd98db62a82f2a3bfbe552df0809cda76f561fc59866e7d38bdb0",
+        "timestamp_seconds": 1741983699746.0,
+        "seconds_in_slot": 4.746
     },
     "nimbus": {
         "slot": 3840108,
@@ -27,8 +27,8 @@
         "client": "nimbus",
         "timestamp": "2025-03-14 20:21:39.444000",
         "status": "produced",
-        "hash": NaN,
-        "parent_hash": NaN,
+        "hash": "0x45c957ad2da19431755d2a1933f380334af769f492f7053b55e23fabedced838",
+        "parent_hash": "0x98deed335ddbd98db62a82f2a3bfbe552df0809cda76f561fc59866e7d38bdb0",
         "timestamp_seconds": 1741983699444.0,
         "seconds_in_slot": 4.444
     },
@@ -36,12 +36,12 @@
         "slot": 3840108,
         "network": "holesky",
         "client": "prysm",
-        "timestamp": "2025-03-14 20:21:39.437000",
+        "timestamp": "2025-03-14 20:21:39.398000",
         "status": "produced",
-        "hash": NaN,
-        "parent_hash": NaN,
-        "timestamp_seconds": 1741983699437.0,
-        "seconds_in_slot": 4.437
+        "hash": "0x45c957ad2da19431755d2a1933f380334af769f492f7053b55e23fabedced838",
+        "parent_hash": "0x98deed335ddbd98db62a82f2a3bfbe552df0809cda76f561fc59866e7d38bdb0",
+        "timestamp_seconds": 1741983699398.0,
+        "seconds_in_slot": 4.398
     },
     "teku": {
         "slot": 3840108,
@@ -49,8 +49,8 @@
         "client": "teku",
         "timestamp": "2025-03-14 20:21:39.710000",
         "status": "produced",
-        "hash": NaN,
-        "parent_hash": NaN,
+        "hash": "0x45c957ad2da19431755d2a1933f380334af769f492f7053b55e23fabedced838",
+        "parent_hash": "0x98deed335ddbd98db62a82f2a3bfbe552df0809cda76f561fc59866e7d38bdb0",
         "timestamp_seconds": 1741983699710.0,
         "seconds_in_slot": 4.71
     }

@@ -25,6 +25,16 @@ interface SlotData {
   };
 }
 
+// Get the API base URL based on environment
+const getApiBaseUrl = () => {
+  // In development, use the full URL
+  if (process.env.NODE_ENV === 'development') {
+    return 'http://localhost:5000/api';
+  }
+  // In production, use relative URLs
+  return '/api';
+};
+
 const SlotVisualization: React.FC = () => {
   const theme = useTheme();
   const { currentNetwork } = useNetwork();
@@ -46,8 +56,9 @@ const SlotVisualization: React.FC = () => {
       setRefreshing(true);
       
       // Request 20 slots to ensure we have enough data
-      console.log(`[FETCH] Making API request to http://localhost:5000/api/slots/${currentNetwork}?count=20`);
-      const response = await axios.get(`http://localhost:5000/api/slots/${currentNetwork}?count=20`);
+      const apiUrl = `${getApiBaseUrl()}/slots/${currentNetwork}?count=20`;
+      console.log(`[FETCH] Making API request to ${apiUrl}`);
+      const response = await axios.get(apiUrl);
       console.log(`[FETCH] Received ${response.data.length} slots from API`);
       
       if (response.data.length === 0) {

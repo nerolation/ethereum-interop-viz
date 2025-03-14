@@ -6,14 +6,16 @@ import glob
 import logging
 
 app = Flask(__name__)
-CORS(app)
+# Enable CORS for all routes and origins
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = app.logger
 
 NETWORKS = ["mainnet", "sepolia", "holesky"]
-DATA_DIR = "data"
+# Use absolute path for DATA_DIR
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 DEFAULT_SLOT_COUNT = 20  # Increased from 10 to ensure we have enough data
 
 @app.route('/api/slots/<network>', methods=['GET'])
@@ -162,4 +164,5 @@ def get_clients():
 
 if __name__ == '__main__':
     logger.info("Starting Ethereum Slot Visualization API server")
+    logger.info(f"Data directory: {DATA_DIR}")
     app.run(debug=True, host='0.0.0.0', port=5000) 

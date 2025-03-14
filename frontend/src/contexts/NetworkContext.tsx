@@ -17,6 +17,16 @@ interface NetworkProviderProps {
   children: ReactNode;
 }
 
+// Get the API base URL based on environment
+const getApiBaseUrl = () => {
+  // In development, use the full URL
+  if (process.env.NODE_ENV === 'development') {
+    return 'http://localhost:5000/api';
+  }
+  // In production, use relative URLs
+  return '/api';
+};
+
 export const NetworkProvider: React.FC<NetworkProviderProps> = ({ children }) => {
   const [networks, setNetworks] = useState<Network[]>(['mainnet', 'sepolia', 'holesky']);
   const [currentNetwork, setCurrentNetwork] = useState<Network>('mainnet');
@@ -30,7 +40,7 @@ export const NetworkProvider: React.FC<NetworkProviderProps> = ({ children }) =>
         console.log('[NETWORK] Fetching available networks...');
         setLoading(true);
         
-        const response = await axios.get('http://localhost:5000/api/networks');
+        const response = await axios.get(`${getApiBaseUrl()}/networks`);
         console.log('[NETWORK] Available networks from API:', response.data);
         
         if (response.data.length === 0) {

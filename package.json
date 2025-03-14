@@ -1,0 +1,22 @@
+{
+  "name": "ethereum-interop-viz",
+  "version": "1.0.0",
+  "description": "Ethereum Interoperability Visualization",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "cd frontend && npm install && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "frontend/node_modules"
+  ],
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^2.0.6"
+  }
+} 

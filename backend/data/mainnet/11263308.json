@@ -1,0 +1,24 @@
+{
+    "lodestar": {
+        "slot": 11263308,
+        "network": "mainnet",
+        "client": "lodestar",
+        "timestamp": "2025-03-14 20:22:01.606000",
+        "status": "produced",
+        "hash": "0x27ad612b224905520ee39c7f617c69ef15569cc308e057c253ea7dc14ea64e98",
+        "parent_hash": "0x3abc125bff3c52847dc33b78f2d24e326fc910f2c11531a0a8548616d46ad600",
+        "timestamp_seconds": 1741983721606.0,
+        "seconds_in_slot": 2.606
+    },
+    "nimbus": {
+        "slot": 11263308,
+        "network": "mainnet",
+        "client": "nimbus",
+        "timestamp": "2025-03-14 20:22:02.600000",
+        "status": "produced",
+        "hash": "0x27ad612b224905520ee39c7f617c69ef15569cc308e057c253ea7dc14ea64e98",
+        "parent_hash": "0x3abc125bff3c52847dc33b78f2d24e326fc910f2c11531a0a8548616d46ad600",
+        "timestamp_seconds": 1741983722600.0,
+        "seconds_in_slot": 3.6
+    }
+}
