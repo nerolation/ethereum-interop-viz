@@ -7,9 +7,9 @@ import os, json
 import numpy as np
 from backend.pyxatu_config import get_pyxatu_config
 
-# Initialize pyxatu with configuration from environment variables
-# Use use_env_variables=True to make PyXatu read from environment variables
-xatu = pyxatu.PyXatu(use_env_variables=True)
+# Initialize pyxatu with configuration from environment variables or config file
+config = get_pyxatu_config()
+xatu = pyxatu.PyXatu(**config)
 
 def get_reorgs():
     potential_reorgs = xatu.execute_query("""
