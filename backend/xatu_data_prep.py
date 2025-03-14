@@ -5,8 +5,15 @@ import pytz
 import pandas as pd
 import os, json
 import numpy as np
+from pyxatu_config import get_pyxatu_config
 
-xatu = pyxatu.PyXatu()
+# Initialize pyxatu with configuration from environment variables or config file
+config = get_pyxatu_config()
+xatu = pyxatu.PyXatu(
+    clickhouse_user=config.get("CLICKHOUSE_USER"),
+    clickhouse_password=config.get("CLICKHOUSE_PASSWORD"),
+    clickhouse_url=config.get("CLICKHOUSE_URL")
+)
 
 def get_reorgs():
     potential_reorgs = xatu.execute_query("""
