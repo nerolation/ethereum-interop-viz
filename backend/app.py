@@ -17,8 +17,12 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logger = app.logger
 
 NETWORKS = ["mainnet", "sepolia", "holesky"]
-# Use absolute path for DATA_DIR
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+# Use absolute path for DATA_DIR, with special handling for Heroku
+if os.environ.get('DYNO'):  # We're on Heroku
+    DATA_DIR = "/app/backend/data"
+else:  # We're running locally
+    DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+logger.info(f"Using data directory: {DATA_DIR}")
 DEFAULT_SLOT_COUNT = 20  # Increased from 10 to ensure we have enough data
 
 @app.route('/')

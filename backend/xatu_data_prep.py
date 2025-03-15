@@ -269,6 +269,12 @@ def save_data_to_files(slots_data, network):
     # Create the output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
     
+    # Make the directory readable by all users
+    try:
+        os.chmod(output_dir, 0o755)  # rwxr-xr-x
+    except Exception as e:
+        logger.error(f"Error setting permissions on directory {output_dir}: {e}")
+    
     saved_slots = []
     for i, (slot, data) in enumerate(slots_data.items()):
         logger.info(f"Processing slot {slot}/{list(slots_data.keys())[-1]}")
@@ -291,14 +297,16 @@ def save_data_to_files(slots_data, network):
             json.dump(json_data, f)
         
         # Make the file readable by all users (0644 permissions)
-        os.chmod(file_path, 0o644)  # This is equivalent to stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH
+        try:
+            os.chmod(file_path, 0o644)  # This is equivalent to stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH
+        except Exception as e:
+            logger.error(f"Error setting permissions on file {file_path}: {e}")
         
         logger.info(f"Saved slot {slot} for network {network} to {file_path}")
         saved_slots.append(int(slot))
     
     logger.info(f"Saved {len(saved_slots)} slots: {saved_slots}")
     logger.info("Data saving complete")
-    return saved_slots
 
 logger.info("Saving data to files")
 save_data_to_files(df_to_data(df), "mainnet")
