@@ -260,7 +260,7 @@ def save_data_to_files(slots_data, network):
     """
     # Determine the output directory based on the environment
     if os.environ.get('DYNO'):  # We're on Heroku
-        base_dir = "/app/backend/data"
+        base_dir = "/app/data"
         output_dir = f"{base_dir}/{network}"
     else:  # We're running locally
         # Use absolute path to avoid nested directories

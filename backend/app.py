@@ -19,7 +19,7 @@ logger = app.logger
 NETWORKS = ["mainnet", "sepolia", "holesky"]
 # Use absolute path for DATA_DIR, with special handling for Heroku
 if os.environ.get('DYNO'):  # We're on Heroku
-    DATA_DIR = "/app/backend/data"
+    DATA_DIR = "/app/data"
 else:  # We're running locally
     # Use absolute path to avoid nested directories
     current_dir = os.path.dirname(os.path.abspath(__file__))
