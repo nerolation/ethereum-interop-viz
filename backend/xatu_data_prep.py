@@ -290,8 +290,8 @@ def save_data_to_files(slots_data, network):
         with open(file_path, 'w') as f:
             json.dump(json_data, f)
         
-        # Make the file readable by all users
-        os.chmod(file_path, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH)
+        # Make the file readable by all users (0644 permissions)
+        os.chmod(file_path, 0o644)  # This is equivalent to stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH
         
         logger.info(f"Saved slot {slot} for network {network} to {file_path}")
         saved_slots.append(int(slot))
