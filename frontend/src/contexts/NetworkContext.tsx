@@ -21,7 +21,9 @@ interface NetworkProviderProps {
 const getApiBaseUrl = () => {
   // In development, use the full URL
   if (process.env.NODE_ENV === 'development') {
-    return 'http://localhost:5000/api';
+    // Use port 5001 as a fallback if 5000 is in use
+    const port = process.env.REACT_APP_API_PORT || '5000';
+    return `http://localhost:${port}/api`;
   }
   // In production, use relative URLs
   return '/api';

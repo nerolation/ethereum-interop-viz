@@ -193,4 +193,13 @@ def catch_all(path):
 if __name__ == '__main__':
     logger.info("Starting Ethereum Slot Visualization API server")
     logger.info(f"Data directory: {DATA_DIR}")
-    app.run(debug=True, host='0.0.0.0', port=5000) 
+    # Try to use port 5000, but fall back to other ports if it's already in use
+    port = int(os.environ.get('PORT', 5000))
+    try:
+        app.run(debug=True, host='0.0.0.0', port=port)
+    except OSError as e:
+        if "Address already in use" in str(e):
+            logger.warning(f"Port {port} is already in use, trying port {port+1}")
+            app.run(debug=True, host='0.0.0.0', port=port+1)
+        else:
+            raise 

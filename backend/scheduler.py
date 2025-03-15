@@ -14,7 +14,8 @@ def run_xatu_data_prep():
     """Run the xatu_data_prep.py script."""
     try:
         logger.info("Starting xatu_data_prep.py")
-        subprocess.run(["python", "-m", "backend.xatu_data_prep"], check=True)
+        # Run the script directly instead of as a module
+        subprocess.run(["python", "xatu_data_prep.py"], check=True)
         logger.info("xatu_data_prep.py completed successfully")
     except subprocess.CalledProcessError as e:
         logger.error(f"Error running xatu_data_prep.py: {e}")
