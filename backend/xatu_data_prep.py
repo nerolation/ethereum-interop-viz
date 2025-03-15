@@ -5,11 +5,11 @@ import pytz
 import pandas as pd
 import os, json
 import numpy as np
-from backend.pyxatu_config import get_pyxatu_config
+#from backend.pyxatu_config import get_pyxatu_config
 
 # Initialize pyxatu with environment variables (supported in version 1.8+)
-# Using PyXatu v1.8 which supports the use_env_variables parameter
-xatu = pyxatu.PyXatu(use_env_variables=True)
+# Using PyXatu v1.9 which supports skipping validator mapping download
+xatu = pyxatu.PyXatu(use_env_variables=True, skip_validator_mapping=True)
 
 def get_reorgs():
     potential_reorgs = xatu.execute_query("""
