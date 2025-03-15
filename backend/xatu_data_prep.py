@@ -8,8 +8,8 @@ import numpy as np
 #from backend.pyxatu_config import get_pyxatu_config
 
 # Initialize pyxatu with environment variables (supported in version 1.8+)
-# Using PyXatu v1.9 which supports skipping validator mapping download
-xatu = pyxatu.PyXatu(use_env_variables=True, skip_validator_mapping=True)
+# Using PyXatu v1.9
+xatu = pyxatu.PyXatu(use_env_variables=True)
 
 def get_reorgs():
     potential_reorgs = xatu.execute_query("""
