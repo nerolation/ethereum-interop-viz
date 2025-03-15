@@ -262,15 +262,25 @@ def save_data_to_files(slots_data, network):
     
     # Determine the output directory based on environment
     if os.environ.get('DYNO'):  # We're on Heroku
-        output_dir = f"/app/backend/data/{network}"
+        base_dir = "/app/backend/data"
+        output_dir = f"{base_dir}/{network}"
     else:  # We're running locally
-        output_dir = f"backend/data/{network}"
+        base_dir = "backend/data"
+        output_dir = f"{base_dir}/{network}"
     
     # Create the output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
     
-    # Make the directory readable by all users
+    # Make the parent directory readable by all users
     try:
+        logger.info(f"Setting permissions on directory {base_dir}")
+        os.chmod(base_dir, 0o755)  # rwxr-xr-x
+    except Exception as e:
+        logger.error(f"Error setting permissions on directory {base_dir}: {e}")
+    
+    # Make the network directory readable by all users
+    try:
+        logger.info(f"Setting permissions on directory {output_dir}")
         os.chmod(output_dir, 0o755)  # rwxr-xr-x
     except Exception as e:
         logger.error(f"Error setting permissions on directory {output_dir}: {e}")
