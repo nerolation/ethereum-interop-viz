@@ -229,6 +229,13 @@ def df_to_data(df):
     logger.info("Converting DataFrame to slot data format")
     slots_data = {}
     
+    # Add logging to check the DataFrame
+    logger.info(f"DataFrame shape: {df.shape}")
+    logger.info(f"DataFrame columns: {df.columns.tolist()}")
+    logger.info(f"Networks in DataFrame: {df['network'].unique().tolist()}")
+    logger.info(f"Clients in DataFrame: {df['client'].unique().tolist()}")
+    logger.info(f"Sample of DataFrame: {df.head().to_dict('records')}")
+    
     # Group by slot
     for slot, group in df.groupby('slot'):
         slot_data = {}
@@ -237,6 +244,9 @@ def df_to_data(df):
         for client, client_group in group.groupby('client'):
             # Get the first row for this client (should be only one per slot/client)
             row = client_group.iloc[0]
+            
+            # Add logging to check the row data
+            logger.info(f"Processing slot {slot}, client {client}, network {row['network']}")
             
             # Create client data with all fields expected by the frontend
             client_data = {
@@ -268,6 +278,15 @@ def save_data_to_files(slots_data, network):
     """
     Save the data to JSON files
     """
+    # Add logging to check the slots_data
+    logger.info(f"Saving data for network: {network}")
+    logger.info(f"Number of slots to save: {len(slots_data)}")
+    if len(slots_data) > 0:
+        sample_slot = next(iter(slots_data))
+        sample_client = next(iter(slots_data[sample_slot]))
+        logger.info(f"Sample slot: {sample_slot}, Sample client: {sample_client}")
+        logger.info(f"Sample data: {slots_data[sample_slot][sample_client]}")
+    
     # Determine the output directory based on the environment
     if os.environ.get('DYNO'):  # We're on Heroku
         base_dir = "/app/data"
@@ -330,6 +349,8 @@ def save_data_to_files(slots_data, network):
         
         # Save the data to a file
         file_path = os.path.join(output_dir, f"{slot}.json")
+        logger.info(f"Saving data to file: {file_path}")
+        logger.info(f"JSON data to save: {json_data}")
         with open(file_path, 'w') as f:
             json.dump(json_data, f)
         
@@ -348,12 +369,17 @@ def save_data_to_files(slots_data, network):
     logger.info("Data saving complete")
 
 logger.info("Saving data to files")
-save_data_to_files(df_to_data(df), "mainnet")
-
-# Also save the same data to sepolia and holesky for testing
-# In a production environment, we would filter the data by network
-logger.info("Saving data to sepolia and holesky for testing")
-save_data_to_files(df_to_data(df), "sepolia")
-save_data_to_files(df_to_data(df), "holesky")
+# Filter data by network before saving
+for network in ["mainnet", "sepolia", "holesky"]:
+    logger.info(f"Filtering and saving data for {network}")
+    # Filter the DataFrame to only include rows for this network
+    network_df = df[df['network'] == network]
+    
+    if len(network_df) > 0:
+        logger.info(f"Found {len(network_df)} rows for network {network}")
+        network_data = df_to_data(network_df)
+        save_data_to_files(network_data, network)
+    else:
+        logger.info(f"No data found for network {network}")
 
 logger.info("Data saving complete")
