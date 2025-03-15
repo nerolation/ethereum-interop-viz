@@ -5,7 +5,7 @@ import json
 import glob
 import logging
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 # Enable CORS for all routes and origins
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
@@ -17,6 +17,13 @@ NETWORKS = ["mainnet", "sepolia", "holesky"]
 # Use absolute path for DATA_DIR
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 DEFAULT_SLOT_COUNT = 20  # Increased from 10 to ensure we have enough data
+
+@app.route('/')
+def serve():
+    """
+    Serve the frontend application
+    """
+    return app.send_static_file('index.html')
 
 @app.route('/api/slots/<network>', methods=['GET'])
 def get_latest_slots(network):

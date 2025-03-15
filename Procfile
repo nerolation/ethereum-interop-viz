@@ -1,2 +1,2 @@
-web: gunicorn backend.app:app
+web: npm start
 worker: python -m backend.scheduler 

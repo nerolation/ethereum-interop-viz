@@ -7,9 +7,14 @@ const PORT = process.env.PORT || 3000;
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
+// Determine the backend URL based on the environment
+const backendUrl = process.env.NODE_ENV === 'production' 
+  ? 'https://ethereum-interop-viz.herokuapp.com' 
+  : 'http://localhost:5000';
+
 // Proxy API requests to the backend
 app.use('/api', createProxyMiddleware({ 
-  target: 'http://localhost:5000',
+  target: backendUrl,
   changeOrigin: true,
 }));
 
