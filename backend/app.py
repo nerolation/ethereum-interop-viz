@@ -62,9 +62,22 @@ def get_latest_slots(network):
     network_dir = os.path.join(DATA_DIR, network)
     logger.info(f"[API] Looking for data in directory: {network_dir}")
     
+    # Log the absolute path for debugging
+    abs_network_dir = os.path.abspath(network_dir)
+    logger.info(f"[API] Absolute path: {abs_network_dir}")
+    
+    # Check if the directory exists
     if not os.path.exists(network_dir):
         logger.warning(f"[API] No data directory found for network: {network}")
         return jsonify([]), 200
+    
+    # List all files in the directory for debugging
+    try:
+        all_files = os.listdir(network_dir)
+        logger.info(f"[API] Directory contains {len(all_files)} files")
+        logger.info(f"[API] First 5 files: {all_files[:5] if len(all_files) >= 5 else all_files}")
+    except Exception as e:
+        logger.error(f"[API] Error listing directory: {str(e)}")
     
     # Get all JSON files
     json_files = glob.glob(os.path.join(network_dir, "*.json"))
@@ -78,7 +91,12 @@ def get_latest_slots(network):
     try:
         # Sort files by slot number (descending) to get the highest slots first
         json_files.sort(key=lambda x: int(os.path.basename(x).split('.')[0]), reverse=True)
-        logger.info(f"[API] Sorted files, highest slot: {os.path.basename(json_files[0]).split('.')[0] if json_files else 'N/A'}")
+        highest_slot = os.path.basename(json_files[0]).split('.')[0] if json_files else 'N/A'
+        logger.info(f"[API] Sorted files, highest slot: {highest_slot}")
+        
+        # Log the top 5 highest slots for debugging
+        top_slots = [os.path.basename(f).split('.')[0] for f in json_files[:5]] if len(json_files) >= 5 else [os.path.basename(f).split('.')[0] for f in json_files]
+        logger.info(f"[API] Top 5 highest slots: {top_slots}")
         
         # Take the latest 'count' files, but don't try to take more than exist
         latest_files = json_files[:min(count, len(json_files))]
