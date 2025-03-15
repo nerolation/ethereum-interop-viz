@@ -307,13 +307,25 @@ def save_data_to_files(slots_data, network):
         # Convert the data to JSON
         json_data = {}
         for client, values in data.items():
+            # Include all fields from the original data
             json_data[client] = {
+                # Basic attestation data
                 "attestation_count": int(values["attestation_count"]),
                 "attestation_percentage": float(values["attestation_percentage"]),
                 "head_vote": bool(values["head_vote"]),
                 "target_vote": bool(values["target_vote"]),
                 "source_vote": bool(values["source_vote"]),
-                "reorg": bool(values["reorg"]) if "reorg" in values else False
+                "reorg": bool(values["reorg"]) if "reorg" in values else False,
+                # Additional fields for SlotDetails component
+                "slot": int(values["slot"]),
+                "network": values["network"],
+                "client": values["client"],
+                "timestamp": values["timestamp"],
+                "status": values["status"],
+                "hash": values.get("hash", None),
+                "parent_hash": values.get("parent_hash", None),
+                "timestamp_seconds": float(values["timestamp_seconds"]),
+                "seconds_in_slot": float(values["seconds_in_slot"])
             }
         
         # Save the data to a file
