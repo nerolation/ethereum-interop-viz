@@ -146,7 +146,7 @@ def fill_missing_timestamp(row):
     return dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
 # Apply the function to update the 'timestamp' column only where it's NaN.
-df['timestamp'] = df.apply(fill_missing_timestamp, axis=1)
+df['timestamp'] = pd.Series(df.apply(fill_missing_timestamp, axis=1), dtype='datetime64[ns]')
 
 def parse_datetime(event_time):
     # If the event_time is a Timestamp, no need to parse it
