@@ -1,11 +1,14 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import os
 import json
 import glob
 import logging
 
-app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
+# Configure the static folder path to point to the frontend build directory
+static_folder = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'frontend/build')
+app = Flask(__name__, static_folder=static_folder, static_url_path='')
+
 # Enable CORS for all routes and origins
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
@@ -23,7 +26,16 @@ def serve():
     """
     Serve the frontend application
     """
+    logger.info("Serving index.html")
     return app.send_static_file('index.html')
+
+@app.route('/static/<path:path>')
+def serve_static(path):
+    """
+    Serve static files
+    """
+    logger.info(f"Serving static file: {path}")
+    return send_from_directory(os.path.join(static_folder, 'static'), path)
 
 @app.route('/api/slots/<network>', methods=['GET'])
 def get_latest_slots(network):
@@ -168,6 +180,15 @@ def get_clients():
     client_list = list(clients)
     logger.info(f"Available clients: {client_list}")
     return jsonify(client_list)
+
+# Catch-all route to serve the React app for any other routes
+@app.route('/<path:path>')
+def catch_all(path):
+    """
+    Catch-all route to serve the React app
+    """
+    logger.info(f"Catch-all route: {path}")
+    return app.send_static_file('index.html')
 
 if __name__ == '__main__':
     logger.info("Starting Ethereum Slot Visualization API server")
