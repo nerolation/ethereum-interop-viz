@@ -215,6 +215,14 @@ except:
 
 
 def df_to_data(df, output_dir="data"):
+    # Check if we're running on Heroku
+    is_heroku = os.environ.get('DYNO') is not None
+    
+    # Use the correct path based on the environment
+    if is_heroku:
+        # On Heroku, use the absolute path
+        output_dir = os.path.join("/app/backend", output_dir)
+    
     logger.info(f"Saving data to {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
     
