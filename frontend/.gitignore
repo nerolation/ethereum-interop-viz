@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+# /build  # Commented out to allow build directory to be committed for Heroku deployment
 
 # misc
 .DS_Store

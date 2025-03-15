@@ -64,4 +64,7 @@ yarn-error.log*
 .env.production.local
 
 # Heroku
-.heroku/ 
+.heroku/
+
+# Allow frontend build directory for Heroku deployment
+!frontend/build/ 
