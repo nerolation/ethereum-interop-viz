@@ -271,15 +271,17 @@ def save_data_to_files(slots_data, network):
     
     # Make the parent directory readable by all users
     try:
-        logger.info(f"Setting permissions on directory {base_dir}")
+        logger.info(f"Attempting to set permissions on directory {base_dir} to 0o755")
         os.chmod(base_dir, 0o755)  # rwxr-xr-x
+        logger.info(f"Successfully set permissions on directory {base_dir}")
     except Exception as e:
         logger.error(f"Error setting permissions on directory {base_dir}: {e}")
     
     # Make the network directory readable by all users
     try:
-        logger.info(f"Setting permissions on directory {output_dir}")
+        logger.info(f"Attempting to set permissions on directory {output_dir} to 0o755")
         os.chmod(output_dir, 0o755)  # rwxr-xr-x
+        logger.info(f"Successfully set permissions on directory {output_dir}")
     except Exception as e:
         logger.error(f"Error setting permissions on directory {output_dir}: {e}")
     
@@ -306,7 +308,9 @@ def save_data_to_files(slots_data, network):
         
         # Make the file readable by all users (0644 permissions)
         try:
+            logger.info(f"Attempting to set permissions on file {file_path} to 0o644")
             os.chmod(file_path, 0o644)  # This is equivalent to stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH
+            logger.info(f"Successfully set permissions on file {file_path}")
         except Exception as e:
             logger.error(f"Error setting permissions on file {file_path}: {e}")
         
