@@ -5,13 +5,34 @@ import pytz
 import pandas as pd
 import os, json
 import numpy as np
+import time  # Added for timestamp logging
 #from backend.pyxatu_config import get_pyxatu_config
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 # Initialize pyxatu with environment variables (supported in version 1.8+)
 # Using PyXatu v1.9 with NO_GADGET flag to ensure correct usage with environment variables
+logger.info(f"Initializing PyXatu at {time.time()}")
+
+# Check if we're running locally and need to set environment variables from ~/.pyxatu_config.json
+if not os.environ.get('CLICKHOUSE_USER') and os.path.exists(os.path.expanduser('~/.pyxatu_config.json')):
+    logger.info("Running locally, loading PyXatu config from ~/.pyxatu_config.json")
+    try:
+        with open(os.path.expanduser('~/.pyxatu_config.json'), 'r') as f:
+            config = json.load(f)
+            os.environ['CLICKHOUSE_USER'] = config.get('CLICKHOUSE_USER', '')
+            os.environ['CLICKHOUSE_PASSWORD'] = config.get('CLICKHOUSE_PASSWORD', '')
+            os.environ['CLICKHOUSE_URL'] = config.get('CLICKHOUSE_URL', '')
+            logger.info(f"Loaded config: URL={os.environ['CLICKHOUSE_URL']}, User={os.environ['CLICKHOUSE_USER']}")
+    except Exception as e:
+        logger.error(f"Error loading PyXatu config: {e}")
+
 xatu = pyxatu.PyXatu(use_env_variables=True, NO_GADGET=True)
 
 def get_reorgs():
+    logger.info("Fetching reorg data")
     potential_reorgs = xatu.execute_query("""
     SELECT DISTINCT
         slot-depth, meta_network_name, meta_consensus_implementation
@@ -31,12 +52,16 @@ def get_reorgs():
             for client in net_reorgs.client.unique():
                 net_client[client] = {"reorgs": set(net_reorgs["slot"].tolist())}
                 net_stats[net] = net_client
+        logger.info(f"Found reorg data: {net_stats}")
         return net_stats
     else:
+        logger.info("No reorg data found")
         return {}
 
+logger.info("Getting reorg data")
 reorg_dict = get_reorgs()
 
+logger.info("Executing query for block events")
 df = xatu.execute_query("""
     SELECT slot, min(event_date_time) as event_date_time, meta_network_name, meta_consensus_implementation 
     FROM beacon_api_eth_v1_events_block
@@ -44,6 +69,8 @@ df = xatu.execute_query("""
     GROUP BY slot, meta_network_name, meta_consensus_implementation
     ORDER BY slot DESC
 """, columns="slot, timestamp, network, client")
+
+logger.info(f"Query returned {len(df)} rows")
 
 grouped = df.groupby(['client', 'network'])['slot'].agg(['min', 'max']).reset_index()
 
@@ -68,11 +95,13 @@ def fill_missing_slots(df):
     Returns:
         pd.DataFrame: DataFrame with continuous slot numbers for each (network, client) and a new 'status' column.
     """
+    logger.info("Filling missing slots")
     dfs = []
     # Group the data by network and client
     for (network, client), group in df.groupby(['network', 'client']):
         min_slot = group['slot'].min()
         max_slot = group['slot'].max()
+        logger.info(f"Network: {network}, Client: {client}, Min slot: {min_slot}, Max slot: {max_slot}")
         # Create a DataFrame with every slot between min and max (inclusive)
         full_slots = pd.DataFrame({'slot': range(min_slot, max_slot + 1)})
         full_slots['network'] = network
@@ -85,7 +114,9 @@ def fill_missing_slots(df):
         # Otherwise mark as 'produced'
         merged['status'] = np.where(merged['timestamp'].isna(), 'missed', merged['status'])
         dfs.append(merged)
-    return pd.concat(dfs, ignore_index=True)
+    result = pd.concat(dfs, ignore_index=True)
+    logger.info(f"After filling missing slots: {len(result)} rows")
+    return result
 
 def update_status(df, reorg_dict):
     """
@@ -100,6 +131,7 @@ def update_status(df, reorg_dict):
     Returns:
         pd.DataFrame: DataFrame with updated status values.
     """
+    logger.info("Updating status based on reorgs")
     for network, clients in reorg_dict.items():
         for client, data in clients.items():
             reorgs = data.get('reorgs', set())
@@ -116,7 +148,7 @@ df_updated = update_status(df_filled, reorg_dict)
 # Optionally, sort the DataFrame for clarity
 df_updated = df_updated.sort_values(by=['network', 'client', 'slot']).reset_index(drop=True)
 
-
+logger.info("Executing query for beacon blocks")
 info = xatu.execute_query("""
     SELECT DISTINCT slot, block_root, parent_root, meta_network_name 
     FROM beacon_api_eth_v2_beacon_block
@@ -124,11 +156,12 @@ info = xatu.execute_query("""
     ORDER BY slot DESC
 """, columns="slot, hash, parent_hash, network")
 
+logger.info(f"Beacon block query returned {len(info)} rows")
 
 df = df_updated
 df = pd.merge(df, info, how="left", left_on=["slot", "network"], right_on=["slot", "network"])
 
-
+logger.info(f"After merging with beacon blocks: {len(df)} rows")
 
 SLOT_0_TIMESTAMP_MS = 1606824023000  # Slot 0 timestamp in milliseconds
 SLOT_DURATION_MS = 12000             # Slot duration in milliseconds
@@ -146,6 +179,7 @@ def fill_missing_timestamp(row):
     return dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
 # Apply the function to update the 'timestamp' column only where it's NaN.
+logger.info("Filling missing timestamps")
 df['timestamp'] = pd.Series(df.apply(fill_missing_timestamp, axis=1), dtype='datetime64[ns]')
 
 def parse_datetime(event_time):
@@ -167,26 +201,34 @@ def get_seconds_in_slot(first_seen_ts: int, slot: int) -> float:
     return round(time_in_slot_ms / 1000, 3)
 
 # Apply the function directly on the timestamp column
+logger.info("Calculating timestamp seconds")
 df["timestamp_seconds"] = df["timestamp"].apply(parse_datetime)
 df["seconds_in_slot"] = df.apply(lambda x: get_seconds_in_slot(x["timestamp_seconds"], x["slot"]), axis=1)
 
-
-
+logger.info("Preparing to save data to files")
 try:
     known = sorted(os.listdir("data"), key=lambda x: x.split(".")[0])
+    logger.info(f"Found {len(known)} existing data files")
 except:
+    logger.info("No existing data directory found, will create it")
     known = list()
 
 
 def df_to_data(df, output_dir="data"):
+    logger.info(f"Saving data to {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
     
     # Group by 'slot' and sort the slots once
     grouped = df.groupby('slot')
-    known = sorted(os.listdir(output_dir), key=lambda x: x.split(".")[0])
-
+    try:
+        known = sorted(os.listdir(output_dir), key=lambda x: x.split(".")[0])
+        logger.info(f"Found {len(known)} existing files in {output_dir}")
+    except:
+        known = list()
+    
+    saved_slots = []
     for slot, group in grouped:
-        print(f"{slot}/{df.slot.max()}")
+        logger.info(f"Processing slot {slot}/{df.slot.max()}")
         
         slot_data = {}
         # Get the network for the group (assuming all rows in a group have the same network)
@@ -199,19 +241,30 @@ def df_to_data(df, output_dir="data"):
             slot_data[row_dict['client']] = row_dict
         
         # Define the file path using the slot number and network
-        file_path = os.path.join(output_dir, network, f"{slot}.json")
-        os.makedirs(os.path.join(output_dir, network), exist_ok=True)
+        network_dir = os.path.join(output_dir, network)
+        os.makedirs(network_dir, exist_ok=True)
+        file_path = os.path.join(network_dir, f"{slot}.json")
         
         # Write the JSON file
         with open(file_path, "w") as f:
             json.dump(slot_data, f, indent=4)
         
-        print(f"Saved slot {slot} for network {network} to {file_path}")
+        logger.info(f"Saved slot {slot} for network {network} to {file_path}")
+        saved_slots.append(slot)
 
         # Clean up old files if more than 300
         if len(known) > 50:
-            os.remove(os.path.join(output_dir, known[0]))
-            print(f"Removed slot {slot} from {output_dir}/{network}/{known[0]}")
-            known.pop(0)  # Remove the first element after deletion to keep the list updated
+            try:
+                old_file = os.path.join(output_dir, network, known[0])
+                if os.path.exists(old_file):
+                    os.remove(old_file)
+                    logger.info(f"Removed old slot file: {old_file}")
+                known.pop(0)  # Remove the first element after deletion to keep the list updated
+            except Exception as e:
+                logger.error(f"Error removing old file: {e}")
+    
+    logger.info(f"Saved {len(saved_slots)} slots: {saved_slots}")
 
+logger.info("Saving data to files")
 df_to_data(df)
+logger.info("Data saving complete")
