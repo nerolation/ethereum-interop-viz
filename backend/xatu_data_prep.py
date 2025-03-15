@@ -256,11 +256,9 @@ def df_to_data(df):
 
 def save_data_to_files(slots_data, network):
     """
-    Save the slots data to JSON files.
+    Save the data to JSON files
     """
-    logger.info(f"Saving {len(slots_data)} slots for network {network}")
-    
-    # Determine the output directory based on environment
+    # Determine the output directory based on the environment
     if os.environ.get('DYNO'):  # We're on Heroku
         base_dir = "/app/backend/data"
         output_dir = f"{base_dir}/{network}"
