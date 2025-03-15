@@ -238,14 +238,24 @@ def df_to_data(df):
             # Get the first row for this client (should be only one per slot/client)
             row = client_group.iloc[0]
             
-            # Create client data
+            # Create client data with all fields expected by the frontend
             client_data = {
                 "attestation_count": 1 if row['status'] == 'produced' else 0,
                 "attestation_percentage": 100.0 if row['status'] == 'produced' else 0.0,
                 "head_vote": row['status'] == 'produced',
                 "target_vote": row['status'] == 'produced',
                 "source_vote": row['status'] == 'produced',
-                "reorg": row['status'] == 'reorged'
+                "reorg": row['status'] == 'reorged',
+                # Add these fields for the SlotDetails component
+                "slot": int(row['slot']),
+                "network": row['network'],
+                "client": client,
+                "timestamp": str(row['timestamp']),
+                "status": row['status'],
+                "hash": row.get('hash', None),
+                "parent_hash": row.get('parent_hash', None),
+                "timestamp_seconds": float(row['timestamp_seconds']),
+                "seconds_in_slot": float(row['seconds_in_slot'])
             }
             
             slot_data[client] = client_data
@@ -327,4 +337,11 @@ def save_data_to_files(slots_data, network):
 
 logger.info("Saving data to files")
 save_data_to_files(df_to_data(df), "mainnet")
+
+# Also save the same data to sepolia and holesky for testing
+# In a production environment, we would filter the data by network
+logger.info("Saving data to sepolia and holesky for testing")
+save_data_to_files(df_to_data(df), "sepolia")
+save_data_to_files(df_to_data(df), "holesky")
+
 logger.info("Data saving complete")
