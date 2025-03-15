@@ -221,6 +221,39 @@ except:
     logger.info("No existing data directory found, will create it")
     known = list()
 
+def df_to_data(df):
+    """
+    Convert DataFrame to the format expected by save_data_to_files.
+    Returns a dictionary with slot numbers as keys and client data as values.
+    """
+    logger.info("Converting DataFrame to slot data format")
+    slots_data = {}
+    
+    # Group by slot
+    for slot, group in df.groupby('slot'):
+        slot_data = {}
+        
+        # Process each client in the slot
+        for client, client_group in group.groupby('client'):
+            # Get the first row for this client (should be only one per slot/client)
+            row = client_group.iloc[0]
+            
+            # Create client data
+            client_data = {
+                "attestation_count": 1 if row['status'] == 'produced' else 0,
+                "attestation_percentage": 100.0 if row['status'] == 'produced' else 0.0,
+                "head_vote": row['status'] == 'produced',
+                "target_vote": row['status'] == 'produced',
+                "source_vote": row['status'] == 'produced',
+                "reorg": row['status'] == 'reorged'
+            }
+            
+            slot_data[client] = client_data
+        
+        slots_data[str(slot)] = slot_data
+    
+    return slots_data
+
 def save_data_to_files(slots_data, network):
     """
     Save the slots data to JSON files.
@@ -268,5 +301,49 @@ def save_data_to_files(slots_data, network):
     return saved_slots
 
 logger.info("Saving data to files")
-df_to_data(df)
+save_data_to_files(df_to_data(df), "mainnet")
 logger.info("Data saving complete")
+
+# Main execution
+if __name__ == "__main__":
+    try:
+        # Load configuration
+        config = load_config()
+        
+        # Initialize PyXatu
+        logger.info(f"Initializing PyXatu at {time.time()}")
+        client = clickhouse_connect.get_client(
+            host=config["host"],
+            port=config["port"],
+            username=config["username"],
+            password=config["password"],
+            secure=True
+        )
+        
+        # Get the data for each network
+        for network in ["mainnet", "sepolia", "holesky"]:
+            logger.info(f"Processing network: {network}")
+            
+            # Get the data
+            df = get_data(client, network)
+            
+            if df is None or df.empty:
+                logger.warning(f"No data found for network {network}")
+                continue
+                
+            # Get reorg data
+            reorg_data = get_reorgs()
+            
+            # Update status based on reorgs
+            df = update_status(df, reorg_data)
+            
+            # Process the data into slots
+            slots_data = process_data(df)
+            
+            # Save the data to files
+            save_data_to_files(slots_data, network)
+        
+        logger.info("xatu_data_prep.py completed successfully")
+    except Exception as e:
+        logger.error(f"Error in xatu_data_prep.py: {str(e)}")
+        sys.exit(1)
