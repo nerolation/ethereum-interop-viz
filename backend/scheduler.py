@@ -14,8 +14,23 @@ def run_xatu_data_prep():
     """Run the xatu_data_prep.py script."""
     try:
         logger.info("Starting xatu_data_prep.py")
-        # Run the script directly instead of as a module
-        subprocess.run(["python", "xatu_data_prep.py"], check=True)
+        
+        # Check if we're running on Heroku
+        is_heroku = os.environ.get('DYNO') is not None
+        
+        if is_heroku:
+            # On Heroku, we need to use the full path or module import
+            if os.path.exists('/app/backend/xatu_data_prep.py'):
+                logger.info("Running on Heroku with backend directory")
+                subprocess.run(["python", "/app/backend/xatu_data_prep.py"], check=True)
+            else:
+                logger.info("Running on Heroku with module import")
+                subprocess.run(["python", "-m", "backend.xatu_data_prep"], check=True)
+        else:
+            # Locally, we can just run the script directly
+            logger.info("Running locally")
+            subprocess.run(["python", "xatu_data_prep.py"], check=True)
+            
         logger.info("xatu_data_prep.py completed successfully")
     except subprocess.CalledProcessError as e:
         logger.error(f"Error running xatu_data_prep.py: {e}")
