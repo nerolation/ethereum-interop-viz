@@ -21,7 +21,10 @@ NETWORKS = ["mainnet", "sepolia", "holesky"]
 if os.environ.get('DYNO'):  # We're on Heroku
     DATA_DIR = "/app/backend/data"
 else:  # We're running locally
-    DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+    # Use absolute path to avoid nested directories
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    DATA_DIR = os.path.join(parent_dir, "data")
 logger.info(f"Using data directory: {DATA_DIR}")
 DEFAULT_SLOT_COUNT = 20  # Increased from 10 to ensure we have enough data
 

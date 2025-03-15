@@ -263,8 +263,13 @@ def save_data_to_files(slots_data, network):
         base_dir = "/app/backend/data"
         output_dir = f"{base_dir}/{network}"
     else:  # We're running locally
-        base_dir = "backend/data"
-        output_dir = f"{base_dir}/{network}"
+        # Use absolute path to avoid nested directories
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        parent_dir = os.path.dirname(current_dir)
+        base_dir = os.path.join(parent_dir, "data")
+        output_dir = os.path.join(base_dir, network)
+    
+    logger.info(f"Saving data to directory: {output_dir}")
     
     # Create the output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)

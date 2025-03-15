@@ -2,6 +2,7 @@ import time
 import subprocess
 import logging
 import os
+import sys
 
 # Configure logging
 logging.basicConfig(
@@ -18,18 +19,17 @@ def run_xatu_data_prep():
         # Check if we're running on Heroku
         is_heroku = os.environ.get('DYNO') is not None
         
+        # Get the current directory
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        
         if is_heroku:
-            # On Heroku, we need to use the full path or module import
-            if os.path.exists('/app/backend/xatu_data_prep.py'):
-                logger.info("Running on Heroku with backend directory")
-                subprocess.run(["python", "/app/backend/xatu_data_prep.py"], check=True)
-            else:
-                logger.info("Running on Heroku with module import")
-                subprocess.run(["python", "-m", "backend.xatu_data_prep"], check=True)
+            # On Heroku, we need to use the full path
+            logger.info("Running on Heroku")
+            subprocess.run(["python", os.path.join(current_dir, "xatu_data_prep.py")], check=True)
         else:
             # Locally, we can just run the script directly
             logger.info("Running locally")
-            subprocess.run(["python", "xatu_data_prep.py"], check=True)
+            subprocess.run(["python", os.path.join(current_dir, "xatu_data_prep.py")], check=True)
             
         logger.info("xatu_data_prep.py completed successfully")
     except subprocess.CalledProcessError as e:
