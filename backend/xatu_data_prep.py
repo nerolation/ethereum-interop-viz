@@ -6,10 +6,18 @@ import pandas as pd
 import os, json
 import numpy as np
 import time  # Added for timestamp logging
+import sys
+import stat  # Add this import for file permissions
 #from backend.pyxatu_config import get_pyxatu_config
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 logger = logging.getLogger(__name__)
 
 # Initialize pyxatu with environment variables (supported in version 1.8+)
@@ -213,65 +221,51 @@ except:
     logger.info("No existing data directory found, will create it")
     known = list()
 
-
-def df_to_data(df, output_dir="data"):
-    # Check if we're running on Heroku
-    is_heroku = os.environ.get('DYNO') is not None
+def save_data_to_files(slots_data, network):
+    """
+    Save the slots data to JSON files.
+    """
+    logger.info(f"Saving {len(slots_data)} slots for network {network}")
     
-    # Use the correct path based on the environment
-    if is_heroku:
-        # On Heroku, use the absolute path
-        output_dir = os.path.join("/app/backend", output_dir)
+    # Determine the output directory based on environment
+    if os.environ.get('DYNO'):  # We're on Heroku
+        output_dir = f"/app/backend/data/{network}"
+    else:  # We're running locally
+        output_dir = f"backend/data/{network}"
     
-    logger.info(f"Saving data to {output_dir}")
+    # Create the output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
     
-    # Group by 'slot' and sort the slots once
-    grouped = df.groupby('slot')
-    try:
-        known = sorted(os.listdir(output_dir), key=lambda x: x.split(".")[0])
-        logger.info(f"Found {len(known)} existing files in {output_dir}")
-    except:
-        known = list()
-    
     saved_slots = []
-    for slot, group in grouped:
-        logger.info(f"Processing slot {slot}/{df.slot.max()}")
+    for i, (slot, data) in enumerate(slots_data.items()):
+        logger.info(f"Processing slot {slot}/{list(slots_data.keys())[-1]}")
         
-        slot_data = {}
-        # Get the network for the group (assuming all rows in a group have the same network)
-        network = group['network'].iloc[0]  # Take the first network value in the group
+        # Convert the data to JSON
+        json_data = {}
+        for client, values in data.items():
+            json_data[client] = {
+                "attestation_count": int(values["attestation_count"]),
+                "attestation_percentage": float(values["attestation_percentage"]),
+                "head_vote": bool(values["head_vote"]),
+                "target_vote": bool(values["target_vote"]),
+                "source_vote": bool(values["source_vote"]),
+                "reorg": bool(values["reorg"]) if "reorg" in values else False
+            }
         
-        # Convert rows to dictionaries at once (avoiding iterrows)
-        for _, row in group.iterrows():
-            row_dict = row.to_dict()
-            row_dict["timestamp"] = str(row_dict["timestamp"]) if pd.notna(row_dict.get("timestamp")) else None
-            slot_data[row_dict['client']] = row_dict
+        # Save the data to a file
+        file_path = os.path.join(output_dir, f"{slot}.json")
+        with open(file_path, 'w') as f:
+            json.dump(json_data, f)
         
-        # Define the file path using the slot number and network
-        network_dir = os.path.join(output_dir, network)
-        os.makedirs(network_dir, exist_ok=True)
-        file_path = os.path.join(network_dir, f"{slot}.json")
-        
-        # Write the JSON file
-        with open(file_path, "w") as f:
-            json.dump(slot_data, f, indent=4)
+        # Make the file readable by all users
+        os.chmod(file_path, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH)
         
         logger.info(f"Saved slot {slot} for network {network} to {file_path}")
-        saved_slots.append(slot)
-
-        # Clean up old files if more than 300
-        if len(known) > 50:
-            try:
-                old_file = os.path.join(output_dir, network, known[0])
-                if os.path.exists(old_file):
-                    os.remove(old_file)
-                    logger.info(f"Removed old slot file: {old_file}")
-                known.pop(0)  # Remove the first element after deletion to keep the list updated
-            except Exception as e:
-                logger.error(f"Error removing old file: {e}")
+        saved_slots.append(int(slot))
     
     logger.info(f"Saved {len(saved_slots)} slots: {saved_slots}")
+    logger.info("Data saving complete")
+    return saved_slots
 
 logger.info("Saving data to files")
 df_to_data(df)
